@@ -1,0 +1,17 @@
+---
+- name: ensure nginx installed
+  stat: path=/usr/sbin/nginx
+  register: st
+- name: install nginx 
+  apt: name=nginx state=present
+  when: st.stat.exists is not defined
+- name: provide nginx directory for django configs
+  file: path=/etc/nginx/django.conf.d state=directory
+- name: hook up nginx django configs
+  template: src=templates/plug_nginx.j2 dest=/etc/nginx/conf.d/zzz_django.conf
+- name: ensure supervisord installed
+  apt: name=supervisor state=present
+- name: provide supervisord directory for django configs
+  file: path=/etc/supervisor/django.conf.d state=directory
+- name: hook up supervisord django configs
+  template: src=templates/plug_supervisor.j2 dest=/etc/supervisor/conf.d/django.conf

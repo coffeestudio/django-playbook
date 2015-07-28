@@ -1,0 +1,4 @@
+---
+- hosts: django_servers
+  tasks:
+  - include: tasks/bootstrap.yml
