@@ -1,4 +1,9 @@
 ---
 - hosts: django_servers
+  vars_files:
+  - vars/main.yml
+  - vars/hosts.yml
   tasks:
   - include: tasks/bootstrap.yml
+  - include: tasks/setup_host.yml
+    with_items: "{{hosts}}"
