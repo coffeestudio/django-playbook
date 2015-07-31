@@ -1,3 +1,0 @@
----
-- template: src=templates/supervisor.j2 dest=/etc/supervisor/django.conf.d/{{item.name}}.conf
-- template: src=templates/nginx.j2 dest=/etc/nginx/django.conf.d/{{item.name}}.conf

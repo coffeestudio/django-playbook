@@ -1,0 +1,4 @@
+---
+
+- include: bootstrap.yml
+- include: setup-host.yml

@@ -1,0 +1,5 @@
+---
+- hosts: django_servers
+  roles:
+    - { role: web-django, domain: example.com, owner: example, name: example }
+    - { role: web-django, domain: example2.com, owner: example, name: example2 }

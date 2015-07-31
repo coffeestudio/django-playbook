@@ -1,4 +1,0 @@
-[program:{{item.name}}]
-command={{vhosts_root}}/{{item.owner}}/data/www/{{item.domain}}/env/bin/gunicorn {{item.name}}.wsgi:application --name {{item.name}} --workers 1 --bind=unix:{{vhosts_root}}/{{item.owner}}/data/tmp/{{item.name}}.sock
-directory={{vhosts_root}}/{{item.owner}}/data/www/{{item.domain}}
-user={{item.owner}}
