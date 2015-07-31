@@ -1,0 +1,3 @@
+---
+- file: path=/etc/supervisor/django.conf.d/{{name}}.conf state=absent
+- file: path=/etc/nginx/django.conf.d/{{name}}.conf state=absent

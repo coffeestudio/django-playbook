@@ -2,3 +2,6 @@
 
 - include: bootstrap.yml
 - include: setup-host.yml
+  when: enabled == true
+- include: remove-host.yml
+  when: enabled == false
