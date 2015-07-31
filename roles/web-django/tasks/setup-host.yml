@@ -1,3 +1,5 @@
 ---
 - template: src=supervisor.j2 dest=/etc/supervisor/django.conf.d/{{name}}.conf
+  notify: restart supervisor
 - template: src=nginx.j2 dest=/etc/nginx/django.conf.d/{{name}}.conf
+  notify: reload nginx

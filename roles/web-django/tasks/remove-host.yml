@@ -1,3 +1,5 @@
 ---
 - file: path=/etc/supervisor/django.conf.d/{{name}}.conf state=absent
+  notify: restart supervisor
 - file: path=/etc/nginx/django.conf.d/{{name}}.conf state=absent
+  notify: reload nginx

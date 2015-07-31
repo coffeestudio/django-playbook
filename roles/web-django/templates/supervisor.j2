@@ -1,4 +1,5 @@
 [program:{{name}}]
-command={{vhosts_root}}/{{owner}}/data/www/{{domain}}/env/bin/gunicorn {{name}}.wsgi:application --name {{name}} --workers 1 --bind=unix:{{vhosts_root}}/{{owner}}/data/tmp/{{name}}.sock
-directory={{vhosts_root}}/{{owner}}/data/www/{{domain}}
+command={{gunicorn_path}} {{settings.wsgi_application}} --name {{name}} --workers {{workers}} --bind=unix:{{tmp_dir}}/{{name}}.sock
+directory={{project_dir}}
 user={{owner}}
+

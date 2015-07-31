@@ -1,21 +1,21 @@
 server {
     server_name {{domain}};
     charset UTF-8;
-    access_log {{vhosts_root}}/httpd-logs/{{domain}}.access.log ;
-    error_log {{vhosts_root}}/httpd-logs/{{domain}}.coffeemade.ru.error.log notice;
-    listen 185.22.234.104:80;
+    access_log {{logs_dir}}/{{domain}}.access.log;
+    error_log {{logs_dir}}/{{domain}}.error.log notice;
+    listen {{listen}};
     include /etc/nginx/vhosts-includes/*.conf;
     include /etc/nginx/vhosts-resources/dev/*.conf;
-    location /static {
+    location {{settings.static_url}} {
         autoindex on;
-        alias {{vhosts_root}}/{{owner}}/data/www/{{domain}}/static/;
+        alias {{project_dir}}{{settings.static_url}};
     }
-    location /media {
+    location {{settings.media_url}} {
         autoindex on;
-        alias {{vhosts_root}}/{{owner}}/data/www/{{domain}}/media/;
+        alias {{project_dir}}{{settings.media_url}};
     }
     location / {
-        proxy_pass http://unix:{{vhosts_root}}/{{owner}}/data/tmp/{{name}}.sock;
+        proxy_pass http://unix:{{tmp_dir}}/{{name}}.sock;
         proxy_redirect off;
         proxy_set_header Host $host;
         proxy_set_header X-Real-IP $remote_addr;
