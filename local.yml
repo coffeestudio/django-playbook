@@ -1,5 +1,5 @@
 ---
 - hosts: django_servers
   roles:
-    - { role: web-django, enabled: false, domain: example.com, owner: example }
-    - { role: web-django, domain: example2.com, owner: testdjango }
+    - { role: web-django, enabled: false, domain: example.com, aliases: ["www.example.com"], owner: example }
+    - { role: web-django, domain: example2.com, aliases: ["www.example2.com"], owner: testdjango }

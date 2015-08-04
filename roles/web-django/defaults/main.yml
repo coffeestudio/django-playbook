@@ -1,3 +1,4 @@
 ---
 enabled: true
 workers: 1
+aliases: []

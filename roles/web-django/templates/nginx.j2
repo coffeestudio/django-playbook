@@ -1,5 +1,5 @@
 server {
-    server_name {{domain}};
+    server_name {{domain}}{% for item in aliases %} {{item}}{% endfor %};
     charset UTF-8;
     access_log {{logs_dir}}/{{domain}}.access.log;
     error_log {{logs_dir}}/{{domain}}.error.log notice;
