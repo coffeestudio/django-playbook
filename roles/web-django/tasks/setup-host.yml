@@ -1,4 +1,17 @@
 ---
+- command: "echo ~{{owner}}"
+  register: owner_home
+- set_fact: home_dir={{owner_home.stdout}}
+- command: "find {{home_dir}} -name manage.py -type f -executable -exec dirname '{}' \\; -quit"
+  register: manage_py_files
+- command: "find {{home_dir}} -name gunicorn -type f -executable -print -quit"
+  register: gunicorn_files
+- set_fact:
+    project_dir: "{{manage_py_files.stdout}}"
+    gunicorn_path: "{{gunicorn_files.stdout}}"
+- file: path={{tmp_dir}} state=directory owner={{owner}} group={{owner}}
+- django-settings: app_dir={{project_dir}} owner={{owner}}
+  register: settings
 - template: src=supervisor.j2 dest=/etc/supervisor/django.conf.d/{{name}}.conf
   notify: restart supervisor
 - template: src=nginx.j2 dest=/etc/nginx/django.conf.d/{{name}}.conf

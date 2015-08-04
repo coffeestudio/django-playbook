@@ -1,13 +1,10 @@
 ---
 vhosts_root: /var/www
 listen: "185.22.234.104:80"
-name: "{{ domain | regex_replace('\\.', '_') }}"
+name: "{{domain | regex_replace('\\.', '_')}}"
 logs_dir: "{{vhosts_root}}/httpd-logs"
-home_dir: "{{ vhosts_root }}/{{ owner }}/data"
-tmp_dir: "{{ home_dir }}/tmp"
-project_dir: "{{ home_dir }}/www/{{domain}}"
-gunicorn_path: "{{ project_dir }}/env/bin/gunicorn"
+tmp_dir: "{{home_dir}}/tmp"
 settings:
-  wsgi_application: "{{ name }}.wsgi:application"
+  wsgi_application: "{{name}}.wsgi:application"
   static_url: /static/
   media_url: /media/
