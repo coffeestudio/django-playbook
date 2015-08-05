@@ -1,8 +1,7 @@
 ---
 
 - name: restart supervisor
-  service: name=supervisor state=restarted
-  ignore_errors: yes
+  command: /etc/init.d/supervisor restart
 
 - name: reload nginx
   service: name=nginx state=reloaded
