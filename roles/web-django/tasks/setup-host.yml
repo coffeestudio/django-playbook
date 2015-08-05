@@ -22,5 +22,6 @@
 #- template: src=supervisor.j2 dest=/etc/supervisor/django.conf.d/{{name}}.conf
 - template: src=supervisor.j2 dest=/etc/supervisor/conf.d/{{name}}.conf
   notify: restart supervisor
+- service: name=supervisor state=started
 - template: src=nginx.j2 dest=/etc/nginx/django.conf.d/{{name}}.conf
   notify: reload nginx

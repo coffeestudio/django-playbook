@@ -2,5 +2,6 @@
 #- file: path=/etc/supervisor/django.conf.d/{{name}}.conf state=absent
 - file: path=/etc/supervisor/conf.d/{{name}}.conf state=absent
   notify: restart supervisor
+- service: name=supervisor state=started
 - file: path=/etc/nginx/django.conf.d/{{name}}.conf state=absent
   notify: reload nginx

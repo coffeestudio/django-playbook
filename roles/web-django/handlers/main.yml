@@ -2,6 +2,7 @@
 
 - name: restart supervisor
   service: name=supervisor state=restarted
+  ignore_errors: yes
 
 - name: reload nginx
   service: name=nginx state=reloaded
