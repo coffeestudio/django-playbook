@@ -13,7 +13,8 @@
   ignore_errors: yes
 - django-settings: app_dir={{project_dir}} owner={{owner}}
   register: settings
-- template: src=supervisor.j2 dest=/etc/supervisor/django.conf.d/{{name}}.conf
+#- template: src=supervisor.j2 dest=/etc/supervisor/django.conf.d/{{name}}.conf
+- template: src=supervisor.j2 dest=/etc/supervisor/conf.d/{{name}}.conf
   notify: restart supervisor
 - template: src=nginx.j2 dest=/etc/nginx/django.conf.d/{{name}}.conf
   notify: reload nginx
