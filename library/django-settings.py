@@ -42,5 +42,6 @@ if not settings:
 
 sys.path.append(args['app_dir'])
 s = importlib.import_module(settings)
+wsgi_app = s.WSGI_APPLICATION.replace('.application', ':application')
 
-print json.dumps({'wsgi_application': s.WSGI_APPLICATION, 'static_url': s.STATIC_URL, 'media_url': s.MEDIA_URL})
+print json.dumps({'wsgi_application': wsgi_app, 'static_url': s.STATIC_URL, 'media_url': s.MEDIA_URL})

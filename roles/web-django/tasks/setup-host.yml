@@ -2,7 +2,7 @@
 - command: "echo ~{{owner}}"
   register: owner_home
 - set_fact: home_dir={{owner_home.stdout}}
-- command: "find {{home_dir}} -maxdepth 3 -name manage.py -type f -executable -exec dirname '{}' \\; -quit"
+- command: "find {{home_dir}} -maxdepth 5 -name manage.py -type f -executable -exec dirname '{}' \\; -quit"
   register: manage_py_files
 - command: "find {{home_dir}} -name gunicorn -type f -executable -print -quit"
   register: gunicorn_files
