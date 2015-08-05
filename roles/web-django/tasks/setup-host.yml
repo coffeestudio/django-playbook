@@ -2,9 +2,15 @@
 - command: "echo ~{{owner}}"
   register: owner_home
 - set_fact: home_dir={{owner_home.stdout}}
-- command: "find {{home_dir}} -maxdepth 5 -name manage.py -type f -executable -exec dirname '{}' \\; -quit"
+- command: "find {{home_dir}} -maxdepth 4 -name {{domain}} -type d -print -quit"
+  register: site_home
+- set_fact: search_dir={{site_home.stdout}}
+  when: site_home.stdout != ""
+- set_fact: search_dir={{home_dir}}
+  when: site_home.stdout == ""
+- command: "find {{search_dir}} -maxdepth 5 -name manage.py -type f -executable -exec dirname '{}' \\; -quit"
   register: manage_py_files
-- command: "find {{home_dir}} -name gunicorn -type f -executable -print -quit"
+- command: "find {{search_dir}} -name gunicorn -type f -executable -print -quit"
   register: gunicorn_files
 - set_fact:
     project_dir: "{{manage_py_files.stdout}}"
