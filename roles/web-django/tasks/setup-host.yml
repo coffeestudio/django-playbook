@@ -10,6 +10,7 @@
     project_dir: "{{manage_py_files.stdout}}"
     gunicorn_path: "{{gunicorn_files.stdout}}"
 - file: path={{tmp_dir}} state=directory owner={{owner}} group={{owner}}
+  ignore_errors: yes
 - django-settings: app_dir={{project_dir}} owner={{owner}}
   register: settings
 - template: src=supervisor.j2 dest=/etc/supervisor/django.conf.d/{{name}}.conf
