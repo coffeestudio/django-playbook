@@ -5,7 +5,9 @@ server {
     error_log {{logs_dir}}/{{domain}}.error.log notice;
     listen {{listen}};
     include /etc/nginx/vhosts-includes/*.conf;
-    include /etc/nginx/vhosts-resources/dev/*.conf;
+    {% if development %}
+        include /etc/nginx/vhosts-resources/dev/*.conf;
+    {% endif %}
     location {{settings.static_url}} {
         autoindex on;
         alias {{project_dir}}{{settings.static_url}};

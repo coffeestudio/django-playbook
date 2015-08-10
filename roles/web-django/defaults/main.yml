@@ -1,4 +1,5 @@
 ---
 enabled: true
+development: false
 workers: 1
 aliases: []
